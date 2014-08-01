@@ -29,6 +29,29 @@ body {
     padding: 14px 24px;
 }
 
+
+/* Custom bootstrap edits */ 
+ 
+.nav-pills > .active > a,.nav-pills > .active > a:hover, .nav-pills > li > a:hover { 
+    background-color: transparent !important; 
+    text-decoration: none; 
+    color: #428BCA !important; 
+    border-radius:0px; 
+    border-bottom-width: 3px; 
+    border-bottom-style: solid; 
+    border-bottom-color: #FF6600; 
+    padding: 10px 0px; 
+    margin-left: 15px; 
+    margin-right: 15px;  
+} 
+ 
+.nav-pills > li > a{ 
+    border-radius:0px; 
+} 
+
+
+/* End custom bootstrap edits */
+
 @media (min-width: 768px) {
     .nav-justified {
         max-height: 52px;
