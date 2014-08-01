@@ -4,31 +4,30 @@ require('../include/mellivora.inc.php');
 
 login_session_refresh();
 
-if (!isset($_GET['code']) || strlen($_GET['code']) != 2) {
-    message_error('Please supply a valid country code');
+if (!isset($_GET['group']) || strlen($_GET['group']) < 2) {
+    message_error('Please supply a valid group code');
 }
 
-$country = db_select_one(
-    'countries',
+$group = db_select_one(
+    'user_types',
     array(
         'id',
-        'country_name',
-        'country_code'
+        'title',
+        'description'
     ),
     array(
-        'country_code'=>$_GET['code']
+        'title'=>$_GET['group']
     )
 );
 
-if (!$country) {
-    message_error('No country found with that code');
+if (!$group) {
+    message_error('No group found with that code');
 }
 
-head($country['country_name']);
+head($group['title']);
 
-if (cache_start('country_' . $_GET['code'], CONFIG_CACHE_TIME_COUNTRIES)) {
 
-    section_head(htmlspecialchars($country['country_name']) . country_flag_link($country['country_name'], $country['country_code'], true), '', false);
+    section_head(htmlspecialchars($group['title']), $group['description'], false);
 
     $scores = db_query_fetch_all('
             SELECT
@@ -40,21 +39,19 @@ if (cache_start('country_' . $_GET['code'], CONFIG_CACHE_TIME_COUNTRIES)) {
                co.country_code,
                SUM(c.points) AS score,
                MAX(s.added) AS tiebreaker
-            FROM users AS u
+            FROM user_types AS ut,users AS u
             LEFT JOIN countries AS co ON co.id = u.country_id
             LEFT JOIN submissions AS s ON u.id = s.user_id AND s.correct = 1
             LEFT JOIN challenges AS c ON c.id = s.challenge
-            WHERE u.competing = 1 AND co.id = :country_id
+            WHERE u.competing = 1 AND ut.id = :usertype_id AND ut.id = u.user_type
             GROUP BY u.id
             ORDER BY score DESC, tiebreaker ASC',
         array(
-            'country_id'=>$country['id']
+            'usertype_id'=>$group['id']
         )
-    );
 
+    );
     scoreboard($scores);
 
-    cache_end('country_' . $_GET['code']);
-}
 
 foot();

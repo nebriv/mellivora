@@ -57,7 +57,7 @@ if (cache_start('scores', CONFIG_CACHE_TIME_SCORES)) {
     else {
         foreach ($user_types as $user_type) {
             section_head(
-                htmlspecialchars($user_type['title']) . ' scoreboard',
+                "<a href='group?group=".$user_type['title']."'>".htmlspecialchars($user_type['title'])."</a>" . ' scoreboard',
                 '<a href="'.CONFIG_SITE_URL.'json?view=scoreboard">
                     <img src="'.CONFIG_SITE_URL.'img/json.png" title="View json" alt="json" class="discreet-inline small-icon" />
                  </a>',

@@ -47,7 +47,7 @@ if (CONFIG_ACCOUNTS_SIGNUP_ALLOWED) {
 
     if (!empty($user_types)) {
         echo '<select name="type" class="form-control">
-        <option disabled selected>-- Please select team type --</option>';
+        <option disabled selected>-- Please select Scoring Group --</option>';
 
         foreach ($user_types as $user_type) {
             echo '<option value="',htmlspecialchars($user_type['id']),'">',htmlspecialchars($user_type['title'] . ' - ' . $user_type['description']),'</option>';

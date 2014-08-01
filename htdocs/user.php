@@ -22,7 +22,7 @@ if (cache_start('user_' . $_GET['id'], CONFIG_CACHE_TIME_USER)) {
         array('user_id' => $_GET['id'])
     );
 	$teamtype = db_query_fetch_one('SELECT title from user_types where user_types.id = '.$user['user_type']);
-	$tagline =  country_flag_link($user['country_name'], $user['country_code'], true) . $teamtype['title'];
+	$tagline =  country_flag_link($user['country_name'], $user['country_code'], true) . "<a href='group?group=" . $teamtype['title'] . "'>" . $teamtype['title'] . "</a>";
     section_head(htmlspecialchars($user['team_name']), $tagline, false);
 
     if (!$user['competing']) {
