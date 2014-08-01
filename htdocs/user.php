@@ -12,6 +12,7 @@ if (cache_start('user_' . $_GET['id'], CONFIG_CACHE_TIME_USER)) {
         SELECT
             u.team_name,
             u.competing,
+			u.user_type,
             co.country_name,
             co.country_code
         FROM users AS u
@@ -20,8 +21,9 @@ if (cache_start('user_' . $_GET['id'], CONFIG_CACHE_TIME_USER)) {
           u.id = :user_id',
         array('user_id' => $_GET['id'])
     );
-
-    section_head(htmlspecialchars($user['team_name']), country_flag_link($user['country_name'], $user['country_code'], true), false);
+	$teamtype = db_query_fetch_one('SELECT title from user_types where user_types.id = '.$user['user_type']);
+	$tagline =  country_flag_link($user['country_name'], $user['country_code'], true) . $teamtype['title'];
+    section_head(htmlspecialchars($user['team_name']), $tagline, false);
 
     if (!$user['competing']) {
         message_inline_blue('This user is listed as a non-competitor.');

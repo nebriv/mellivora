@@ -12,7 +12,8 @@ $user = db_select_one(
         'enabled',
         'competing',
         'country_id',
-        '2fa_status'
+        '2fa_status',
+		'user_type'
     ),
     array('id' => $_SESSION['id'])
 );
@@ -24,6 +25,8 @@ section_subhead('Profile settings', '| <a href="user?id='.htmlspecialchars($_SES
 form_start('actions/profile');
 form_input_text('Email', $user['email'], true);
 form_input_text('Team name', $user['team_name'], true);
+$teamtype = db_query_fetch_one('SELECT title from user_types where user_types.id = '.$user['user_type']);
+form_input_text('Group', $teamtype['title'], true);
 
 $opts = db_query_fetch_all('SELECT * FROM countries ORDER BY country_name ASC');
 form_select($opts, 'Country', 'id', $user['country_id'], 'country_name');
