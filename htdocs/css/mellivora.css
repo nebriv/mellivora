@@ -150,6 +150,9 @@ body {
 
 .challenge-container {
     margin-bottom: 20px;
+	text-align:center;
+	width: 350px;
+	margin: auto auto;
 }
 
 .challenge-container h1 {

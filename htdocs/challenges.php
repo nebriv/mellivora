@@ -234,7 +234,7 @@ foreach($challenges as $challenge) {
             echo '
             <div class="challenge-submit">
                 <form method="post" class="form-flag" action="actions/challenges">
-                    <textarea name="flag" type="text" class="form-control" placeholder="Please enter flag for challenge: ',htmlspecialchars($challenge['title']),'"></textarea>
+                    <input type="text" name="flag" rows="1" cols="12" type="text" class="form-control" placeholder="Please enter flag for challenge: ',htmlspecialchars($challenge['title']),'" />
                     <input type="hidden" name="challenge" value="',htmlspecialchars($challenge['id']),'" />
                     <input type="hidden" name="action" value="submit_flag" />';
 
@@ -245,8 +245,8 @@ foreach($challenges as $challenge) {
             }
 
             echo '  <p>
-                        ',($challenge['min_seconds_between_submissions'] ? 'Minimum of '.seconds_to_pretty_time($challenge['min_seconds_between_submissions']).' between submissions.' : ''),'
-                        ',number_format($remaining_submissions),' submissions remaining. Available for another ', time_remaining($challenge['available_until']),'.
+                        ',//($challenge['min_seconds_between_submissions'] ? 'Minimum of '.seconds_to_pretty_time($challenge['min_seconds_between_submissions']).' between submissions.' : ''),'
+                        '',number_format($remaining_submissions),' submissions remaining. Available for another ', time_remaining($challenge['available_until']),'.
                     </p>
                     <button class="btn btn-sm btn-primary" type="submit">Submit flag</button>
                 </form>
