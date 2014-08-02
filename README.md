@@ -1,4 +1,4 @@
-Mellivora
+Mellivora  [![Stories in Ready](https://badge.waffle.io/nebriv/mellivora.svg?label=ready&title=Ready)](http://waffle.io/nebriv/mellivora) 
 =========
 
 Mellivora is a CTF engine written in PHP. Want a quick overview? Check out a [screenshot gallery on imgur](http://mellivora.imgur.com/).
