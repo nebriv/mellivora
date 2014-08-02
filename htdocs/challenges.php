@@ -136,7 +136,7 @@ foreach($challenges as $challenge) {
     // and continue to next challenge
     if ($time < $challenge['available_from']) {
         echo '
-        <div class="challenge-container">
+		<div class="challenge-container">
             <h1><i>Hidden challenge worth ', number_format($challenge['points']), 'pts</i></h1>
             <i>Available in ',time_remaining($challenge['available_from']),' (from ', date_time($challenge['available_from']), ' until ', date_time($challenge['available_until']), ')</i>
         </div>';
@@ -147,6 +147,7 @@ foreach($challenges as $challenge) {
     $remaining_submissions = $challenge['num_attempts_allowed']-$challenge['num_submissions'];
 
     echo '
+	<hr>
     <div class="challenge-container">
         <h1 class="challenge-head">
         <a href="challenge?id=',htmlspecialchars($challenge['id']),'">',htmlspecialchars($challenge['title']), '</a> (', number_format($challenge['points']), 'pts)';
@@ -162,7 +163,10 @@ foreach($challenges as $challenge) {
     // write out challenge description
     if ($challenge['description']) {
         echo '
-        <div class="challenge-description">
+        <div class="row">
+		<div class="collapse-group">
+		<div class="collapse">
+		<div class="challenge-description">
             ',$bbc->parse($challenge['description']),'
         </div> <!-- / challenge-description -->';
     }
@@ -256,6 +260,10 @@ foreach($challenges as $challenge) {
     }
 
     echo '
+	</div><!-- End collapse -->
+	<center><a class="collapse-btn" href="#">-- Expand Challenge --</a></center>
+	</div><!-- End collapse-group -->
+	</div><!-- End row -->
     </div> <!-- / challenge-container -->';
 }
 
