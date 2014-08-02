@@ -128,10 +128,10 @@ body {
 }
 
 #site-logo {
-    width: 36px;
+    width: 31px;
     height: 36px;
     display: inline-block;
-    background: url("../img/mellivora.png");
+    background: url("../img/c4ctf.png");
 }
 
 #site-logo-text {
