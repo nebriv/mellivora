@@ -12,7 +12,7 @@ echo '
     <table id="files" class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>Team</th>
+          <th>Member</th>
           <th>Email</th>
           <th>Added</th>
           <th>Class</th>

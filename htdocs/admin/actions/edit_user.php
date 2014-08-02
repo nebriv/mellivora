@@ -11,8 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_POST['action'] == 'edit') {
 
-        validate_email($_POST['email']);
-
+        validate_email($_POST['email']); 
         db_update(
           'users',
           array(
@@ -20,7 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              'team_name'=>$_POST['team_name'],
              'enabled'=>$_POST['enabled'],
              'competing'=>$_POST['competing'],
-             'country_id'=>$_POST['country']
+             'country_id'=>$_POST['country'],
+			 'user_type'=>$_POST['group_name']
           ),
           array(
              'id'=>$_POST['id']

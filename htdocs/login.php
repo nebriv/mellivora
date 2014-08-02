@@ -27,14 +27,14 @@ echo '
 if (CONFIG_ACCOUNTS_SIGNUP_ALLOWED) {
     echo '
     <form method="post" id="registerForm" class="form-signin" action="actions/login">
-        <h2>or, register a team</h2>
+        <h2>or, register yourself</h2>
         <p>
-            Your team shares one account.
+            Your team can share one account.
             ',(CONFIG_ACCOUNTS_EMAIL_PASSWORD_ON_SIGNUP ? 'An confirmation email containing a random password will be sent to the chosen address.' : ''),'
         </p>
         <input name="',md5(CONFIG_SITE_NAME.'USR'),'" type="email" class="form-control" placeholder="Email address" required />
         ',(!CONFIG_ACCOUNTS_EMAIL_PASSWORD_ON_SIGNUP ? '<input name="'.md5(CONFIG_SITE_NAME.'PWD').'" type="password" class="form-control" placeholder="Password" required />' : ''),'
-        <input name="team_name" type="text" class="form-control" placeholder="Team name" minlength="',CONFIG_MIN_TEAM_NAME_LENGTH,'" maxlength="',CONFIG_MAX_TEAM_NAME_LENGTH,'" required />';
+        <input name="team_name" type="text" class="form-control" placeholder="Member name" minlength="',CONFIG_MIN_TEAM_NAME_LENGTH,'" maxlength="',CONFIG_MAX_TEAM_NAME_LENGTH,'" required />';
 
     $user_types = db_select_all(
         'user_types',
@@ -47,11 +47,15 @@ if (CONFIG_ACCOUNTS_SIGNUP_ALLOWED) {
 
     if (!empty($user_types)) {
         echo '<select name="type" class="form-control">
-        <option disabled selected>-- Please select Scoring Group --</option>';
+        <option disabled>-- Please select Scoring Group --</option>';
 
         foreach ($user_types as $user_type) {
+			if ($user_type['id'] == 1) {
+            	echo '<option value="',htmlspecialchars($user_type['id']),'" selected>',htmlspecialchars($user_type['title'] . ' - ' . $user_type['description']),'</option>';
+			}else{		
             echo '<option value="',htmlspecialchars($user_type['id']),'">',htmlspecialchars($user_type['title'] . ' - ' . $user_type['description']),'</option>';
-        }
+	    	}    
+		}		
 
         echo '</select>';
     }
@@ -70,7 +74,11 @@ if (CONFIG_ACCOUNTS_SIGNUP_ALLOWED) {
         <option disabled selected>-- Please select a country --</option>';
 
     foreach ($countries as $country) {
-        echo '<option value="',htmlspecialchars($country['id']),'">',htmlspecialchars($country['country_name']),'</option>';
+        if ($country['country_name'] == "United States"){
+			echo '<option value="',htmlspecialchars($country['id']),'" selected>',htmlspecialchars($country['country_name']),'</option>';
+	} else{
+		echo '<option value="',htmlspecialchars($country['id']),'">',htmlspecialchars($country['country_name']),'</option>';
+		}
     }
 
     echo '</select>';

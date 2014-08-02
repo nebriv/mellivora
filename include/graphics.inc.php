@@ -377,7 +377,7 @@ function scoreboard ($scores) {
       <thead>
         <tr>
           <th>#</th>
-          <th>Team</th>
+          <th>Member</th>
           <th class="text-center">Country</th>
           <th>Points</th>
         </tr>

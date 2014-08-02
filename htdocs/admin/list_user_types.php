@@ -25,7 +25,7 @@ $types = db_query_fetch_all('SELECT * FROM user_types ORDER BY title ASC');
 foreach($types as $type) {
     echo '
     <tr>
-        <td>',htmlspecialchars($type['title']),'</td>
+        <td><a href="/group?group=',htmlspecialchars($type['title']),'">',htmlspecialchars($type['title']),'</a></td>
         <td>',short_description($type['description'], 50),'</td>
         <td><a href="edit_user_type.php?id=',htmlspecialchars($type['id']), '" class="btn btn-xs btn-primary">Edit</a></td>
     </tr>
