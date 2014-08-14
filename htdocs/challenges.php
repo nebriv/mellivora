@@ -10,6 +10,9 @@ $time = time();
 $bbc = new BBCode();
 $bbc->SetEnableSmileys(false);
 
+
+$locked = CONFIG_LOCKED;
+
 head('Challenges');
 
 if (isset($_GET['status'])) {
@@ -130,8 +133,7 @@ $challenges = db_query_fetch_all('
     )
 );
 
-foreach($challenges as $challenge) {
-
+foreach($challenges as $key=>$challenge) {
     // if the challenge isn't available yet, display a message
     // and continue to next challenge
     if ($time < $challenge['available_from']) {
@@ -258,13 +260,24 @@ foreach($challenges as $challenge) {
             message_inline_red("You have no remaining submission attempts. If you've made an erroneous submission, please contact the organizers.");
         }
     }
+	
+	//Print_r($challenges);	
+    echo '</div><!-- End collapse -->';
+	
 
-    echo '
-	</div><!-- End collapse -->
-	<center><a class="collapse-btn" href="#">-- Expand Challenge --</a></center>
-	</div><!-- End collapse-group -->
+	$prev = ($challenges[$key-1]);
+
+	if ($locked == 1 && $challenge == reset($challenges)) {
+		echo '<center><a class="collapse-btn" href="#">-- Expand Challenge --</a></center>';
+	}elseif ($locked == 1 && $prev['correct'] != 1){
+		echo "<center>Locked</center>";
+	} else{
+		echo '<center><a class="collapse-btn" href="#">-- Expand Challenge --</a></center>';
+		}
+	echo '</div><!-- End collapse-group -->
 	</div><!-- End row -->
     </div> <!-- / challenge-container -->';
+	$count +=1;
 }
 
 foot();

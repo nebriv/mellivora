@@ -31,6 +31,11 @@ const CONFIG_SITE_URL = 'https://localhost/';
 const CONFIG_SITE_ADMIN_RELPATH = 'admin/';
 define('CONFIG_SITE_ADMIN_URL', CONFIG_SITE_URL . CONFIG_SITE_ADMIN_RELPATH);
 
+// Locked mode
+// 0 = off (Answer any question at any time)
+// 1 = on  (Answer only if you solved previous)
+const CONFIG_LOCKED = 1;
+
 // redirects:
 const CONFIG_INDEX_REDIRECT_TO = 'home'; // from index.php
 const CONFIG_LOGIN_REDIRECT_TO = 'home'; // after login
