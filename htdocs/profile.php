@@ -21,7 +21,7 @@ $user = db_select_one(
 head('Profile');
 
 section_subhead('Profile settings', '| <a href="user?id='.htmlspecialchars($_SESSION['id']).'">View public profile</a>', false);
-
+echo '<p><i>Contact an administrator to change locked options</i></p>';
 form_start('actions/profile');
 form_input_text('Email', $user['email'], true);
 form_input_text('Team name', $user['team_name'], true);
