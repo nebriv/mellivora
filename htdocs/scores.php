@@ -23,7 +23,7 @@ if (cache_start('scores', CONFIG_CACHE_TIME_SCORES)) {
     );
 
     // no user types
-    if (empty($user_types)) {
+    if ((1==1)) {
         section_head(
             'Scoreboard',
             '<a href="'.CONFIG_SITE_URL.'json?view=scoreboard">
@@ -54,7 +54,7 @@ if (cache_start('scores', CONFIG_CACHE_TIME_SCORES)) {
         scoreboard($scores);
     }
     // at least one ser type
-    else {
+    if($user_types) {
         foreach ($user_types as $user_type) {
             section_head(
                 "<a href='group?group=".$user_type['title']."'>".htmlspecialchars($user_type['title'])."</a>" . ' scoreboard',
