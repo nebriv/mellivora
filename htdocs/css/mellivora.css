@@ -163,6 +163,7 @@ body {
     background-color: #eeeeee;
     border-radius: 6px;
     padding: 10px;
+	overflow-x: auto; 
 }
 
 #header a {
