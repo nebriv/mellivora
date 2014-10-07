@@ -52,6 +52,8 @@ sudo a2enmod ssl
 sudo a2ensite mellivora
 sudo service apache2 restart
 
+sudo service mysql restart
+
 # Loadup mysql
 echo "CREATE DATABASE mellivora CHARACTER SET utf8 COLLATE utf8_general_ci;" | mysql -u root
 mysql mellivora -u root < /var/www/mellivora/install/mellivora.sql
