@@ -130,7 +130,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     override.vm.box = 'digital_ocean'
     override.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
 
-    provider.token = '20189370c423a2eb6aaad4c9023e153ef6ecb733064024110e74e16e3a9208ac'
+    provider.token = '[api key]'
     provider.image = 'Debian 7.0 x64'
     provider.region = 'nyc2'
     provider.size = '512mb'
